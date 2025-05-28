@@ -18,13 +18,12 @@ public class Endereco {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String cep;
     private String logradouro;
-    private String numero;
     private String complemento;
     private String bairro;
     private String cidade;
-    private String estado;
-    private String cep;
+    private String uf;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cliente_id")
