@@ -1,10 +1,11 @@
-package com.desafio.cliente_api.mappers;
+package com.desafio.cliente.api.mappers;
 
-import com.desafio.cliente_api.dto.*;
-import com.desafio.cliente_api.model.Cliente;
-import com.desafio.cliente_api.model.Email;
-import com.desafio.cliente_api.model.Endereco;
-import com.desafio.cliente_api.model.Telefone;
+import com.desafio.cliente.api.dto.*;
+import com.desafio.cliente.api.model.Cliente;
+import com.desafio.cliente.api.model.Email;
+import com.desafio.cliente.api.model.Endereco;
+import com.desafio.cliente.api.model.Telefone;
+import com.desafio.cliente.api.dto.*;
 import org.mapstruct.*;
 import org.mapstruct.factory.Mappers;
 
@@ -22,7 +23,7 @@ public interface ClienteMapper {
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "cpf", source = "cpf", qualifiedByName = "removerMascara")
     Cliente toEntity(ClienteRequestDTO dto);
-
+    @Mapping(target = "cpf", source = "cpf", qualifiedByName = "formatarMascara")
     ClienteResponseDTO toResponseDTO(Cliente cliente);
 
     List<ClienteResponseDTO> toResponseDTOList(List<Cliente> clientes);

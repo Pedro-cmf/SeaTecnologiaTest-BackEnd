@@ -1,4 +1,4 @@
-package com.desafio.cliente_api.model;
+package com.desafio.cliente.api.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -12,16 +12,20 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "TB_Telefone")
-public class Telefone {
+@Table(name = "TB_Endereco")
+public class Endereco {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String telefones;
-    private String tipo;
+    private String cep;
+    private String logradouro;
+    private String complemento;
+    private String bairro;
+    private String cidade;
+    private String uf;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
 }

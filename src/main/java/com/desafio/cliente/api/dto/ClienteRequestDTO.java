@@ -1,4 +1,4 @@
-package com.desafio.cliente_api.dto;
+package com.desafio.cliente.api.dto;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -6,6 +6,8 @@ import lombok.Setter;
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.util.List;
 
 @Getter
@@ -13,6 +15,8 @@ import java.util.List;
 public class ClienteRequestDTO {
 
     @NotBlank(message = "O nome é obrigatório")
+    @Size(min = 3, max = 100, message = "O nome deve ter entre 3 e 100 caracteres")
+    @Pattern(regexp = "^[\\p{L}\\p{M}\\d ]+$", message = "O nome deve conter apenas letras, números e espaços")
     private String nome;
 
     @NotBlank(message = "O CPF é obrigatório")

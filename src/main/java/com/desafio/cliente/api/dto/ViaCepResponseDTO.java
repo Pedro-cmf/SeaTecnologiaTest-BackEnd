@@ -1,4 +1,4 @@
-package com.desafio.cliente_api.dto;
+package com.desafio.cliente.api.dto;
 
 import lombok.Getter;
 import lombok.Setter;

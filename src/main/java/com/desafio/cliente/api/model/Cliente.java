@@ -1,4 +1,4 @@
-package com.desafio.cliente_api.model;
+package com.desafio.cliente.api.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -1,6 +1,5 @@
-package com.desafio.cliente_api.dto;
+package com.desafio.cliente.api.model;
 
-import com.desafio.cliente_api.model.Cliente;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,9 +9,11 @@ import javax.persistence.*;
 
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
-public class TelefoneDTO {
+@NoArgsConstructor
+@Entity
+@Table(name = "TB_Telefone")
+public class Telefone {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -23,5 +24,4 @@ public class TelefoneDTO {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
-
 }

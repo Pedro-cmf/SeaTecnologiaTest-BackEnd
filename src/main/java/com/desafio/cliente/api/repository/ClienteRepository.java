@@ -1,6 +1,6 @@
-package com.desafio.cliente_api.repository;
+package com.desafio.cliente.api.repository;
 
-import com.desafio.cliente_api.model.Cliente;
+import com.desafio.cliente.api.model.Cliente;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

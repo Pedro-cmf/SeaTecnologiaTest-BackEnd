@@ -1,6 +1,6 @@
-package com.desafio.cliente_api.service;
+package com.desafio.cliente.api.service;
 
-import com.desafio.cliente_api.dto.ViaCepResponseDTO;
+import com.desafio.cliente.api.dto.ViaCepResponseDTO;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 

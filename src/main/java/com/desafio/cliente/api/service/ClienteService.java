@@ -1,16 +1,17 @@
-package com.desafio.cliente_api.service;
+package com.desafio.cliente.api.service;
 
-import com.desafio.cliente_api.dto.ClienteRequestDTO;
-import com.desafio.cliente_api.dto.ClienteResponseDTO;
-import com.desafio.cliente_api.dto.ViaCepResponseDTO;
-import com.desafio.cliente_api.mappers.ClienteMapper;
-import com.desafio.cliente_api.model.Cliente;
-import com.desafio.cliente_api.model.Endereco;
-import com.desafio.cliente_api.repository.ClienteRepository;
+import com.desafio.cliente.api.dto.ClienteResponseDTO;
+import com.desafio.cliente.api.dto.ViaCepResponseDTO;
+import com.desafio.cliente.api.model.Cliente;
+import com.desafio.cliente.api.model.Endereco;
+import com.desafio.cliente.api.repository.ClienteRepository;
+import com.desafio.cliente.api.dto.ClienteRequestDTO;
+import com.desafio.cliente.api.mappers.ClienteMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Service
 public class ClienteService {
@@ -42,9 +43,6 @@ public class ClienteService {
         String cep = dto.getEndereco().getCep();
         ViaCepResponseDTO enderecoViaCep = viaCepService.buscarEndereco(cep);
 
-        System.out.println("UF retornado: " + enderecoViaCep.getUf());
-        System.out.println("Endereço completo: " + enderecoViaCep);
-
         Endereco endereco = new Endereco();
         endereco.setCep(enderecoViaCep.getCep());
         endereco.setLogradouro(enderecoViaCep.getLogradouro());
@@ -59,6 +57,17 @@ public class ClienteService {
         Cliente clienteSalvo = clienteRepository.save(cliente);
 
         return clienteMapper.toResponseDTO(clienteSalvo);
+    }
+
+    public List<ClienteResponseDTO> listarTodosClientes() {
+        List<Cliente> clientes = clienteRepository.findAll();
+        return clienteMapper.toResponseDTOList(clientes);
+    }
+
+    public ClienteResponseDTO buscarClientePorId(Long id) {
+        Cliente cliente = clienteRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Cliente não encontrado com ID: " + id));
+        return clienteMapper.toResponseDTO(cliente);
     }
 
 }
